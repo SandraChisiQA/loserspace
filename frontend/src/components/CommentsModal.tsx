@@ -130,7 +130,7 @@ export default function CommentsModal({ isOpen, onClose, post, onCommentAdded }:
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 cursor-pointer"
             >
               <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -217,7 +217,7 @@ export default function CommentsModal({ isOpen, onClose, post, onCommentAdded }:
                     <button
                       type="submit"
                       disabled={!newComment.trim() || isSubmitting}
-                      className="bg-[#FF9E3D] hover:bg-[#FF8C1A] disabled:bg-gray-300 disabled:cursor-not-allowed text-black px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 disabled:transform-none"
+                      className="bg-[#FF9E3D] hover:bg-[#FF8C1A] disabled:bg-gray-300 disabled:cursor-not-allowed text-black px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 disabled:transform-none cursor-pointer"
                     >
                       {isSubmitting ? 'Posting...' : 'Comment'}
                     </button>
@@ -231,7 +231,7 @@ export default function CommentsModal({ isOpen, onClose, post, onCommentAdded }:
             <p className="text-gray-500 mb-4">You need to be logged in to comment</p>
             <button
               onClick={onClose}
-              className="text-[#FF9E3D] hover:text-[#FF8C1A] font-medium text-sm transition-colors duration-200"
+              className="text-[#FF9E3D] hover:text-[#FF8C1A] font-medium text-sm transition-colors duration-200 cursor-pointer"
             >
               Close and log in
             </button>
