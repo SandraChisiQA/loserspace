@@ -20,13 +20,7 @@
       "Bash(vercel:*)",
       "Read(//c/Users/Owner/Desktop/project/**)",
       "Bash(echo:*)",
-      "Bash(npx prisma:*)",
-      "Bash(npm install)",
-      "Bash(npm run dev:*)",
-      "Bash(pkill:*)",
-      "Bash(tasklist)",
-      "Bash(cmd.exe:*)",
-      "Bash(git init:*)"
+      "Bash(npx prisma:*)"
     ],
     "deny": [],
     "ask": []
