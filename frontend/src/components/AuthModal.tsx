@@ -120,7 +120,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin', onA
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 cursor-pointer"
+            className="text-gray-400 hover:text-gray-600"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -189,7 +189,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin', onA
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full text-black py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+              className="w-full text-black py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50"
               style={{backgroundColor: '#FF9E3D'}}
               onMouseEnter={(e) => !isLoading && ((e.target as HTMLButtonElement).style.backgroundColor = '#FF8C1A')}
               onMouseLeave={(e) => !isLoading && ((e.target as HTMLButtonElement).style.backgroundColor = '#FF9E3D')}
@@ -204,7 +204,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin', onA
             {mode === 'signin' ? "Don't have an account? " : "Already have an account? "}
             <button
               onClick={switchMode}
-              className="text-[#FF9E3D] hover:text-[#FF8C1A] font-medium cursor-pointer"
+              className="text-[#FF9E3D] hover:text-[#FF8C1A] font-medium"
             >
               {mode === 'signin' ? 'Sign Up' : 'Sign In'}
             </button>

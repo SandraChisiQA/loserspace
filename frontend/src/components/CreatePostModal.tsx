@@ -126,18 +126,18 @@ export default function CreatePostModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-2xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-600">
+        <div className="flex justify-between items-center p-6 border-b border-gray-200">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Share Your Failure</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            <h2 className="text-2xl font-bold text-gray-900">Share Your Failure</h2>
+            <p className="text-sm text-gray-600 mt-1">
               Help others learn from your experience
             </p>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 cursor-pointer"
+            className="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100 transition-all duration-200"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -146,10 +146,10 @@ export default function CreatePostModal({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6 max-h-[calc(90vh-140px)] overflow-y-auto dark:bg-[#2a2a2a]">
+        <form onSubmit={handleSubmit} className="p-6 space-y-6 max-h-[calc(90vh-140px)] overflow-y-auto">
           {/* Category Selection */}
           <div>
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <label htmlFor="category" className="block text-sm font-medium text-[var(--font-primary)] mb-2">
               Category
             </label>
             <select
@@ -157,7 +157,7 @@ export default function CreatePostModal({
               name="category"
               value={formData.category}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 font-medium"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 text-[var(--font-secondary)] font-medium placeholder:text-[var(--font-placeholder)]"
             >
               {categories.map((category) => (
                 <option key={category.key} value={category.key}>
@@ -169,7 +169,7 @@ export default function CreatePostModal({
 
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <label htmlFor="title" className="block text-sm font-medium text-[var(--font-primary)] mb-2">
               Title
             </label>
             <input
@@ -180,10 +180,10 @@ export default function CreatePostModal({
               onChange={handleInputChange}
               required
               maxLength={150}
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 text-[var(--font-secondary)] font-medium placeholder:text-[var(--font-placeholder)]"
               placeholder="Give your failure a descriptive title..."
             />
-            <div className="text-right text-xs text-gray-500 dark:text-gray-400 mt-1">
+            <div className="text-right text-xs text-gray-500 mt-1">
               {formData.title.length} / 150
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function CreatePostModal({
           {/* Conditional Fields Based on Category */}
           {formData.category === 'GENERAL' ? (
             <div>
-              <label htmlFor="contents" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label htmlFor="contents" className="block text-sm font-medium text-[var(--font-primary)] mb-2">
                 Tell us about your failure
               </label>
               <textarea
@@ -201,7 +201,7 @@ export default function CreatePostModal({
                 onChange={handleInputChange}
                 required
                 rows={8}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 resize-none font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 resize-none text-[var(--font-secondary)] font-medium placeholder:text-[var(--font-placeholder)]"
                 placeholder="Share your experience, what went wrong, and what you learned..."
               />
             </div>
@@ -209,7 +209,7 @@ export default function CreatePostModal({
             <div className="space-y-6">
               {/* What Failed */}
               <div>
-                <label htmlFor="whatFailed" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                <label htmlFor="whatFailed" className="block text-sm font-medium text-gray-700 mb-2">
                   <span className="text-[#FF9E3D] font-semibold">What failed?</span>
                 </label>
                 <textarea
@@ -220,17 +220,17 @@ export default function CreatePostModal({
                   required
                   maxLength={500}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 resize-none font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 resize-none text-[var(--font-secondary)] font-medium placeholder:text-[var(--font-placeholder)]"
                   placeholder="Describe what went wrong, what didn't work, or what you attempted..."
                 />
-                <div className="text-right text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <div className="text-right text-xs text-gray-500 mt-1">
                   {formData.whatFailed.length} / 500
                 </div>
               </div>
 
               {/* Lesson Learned */}
               <div>
-                <label htmlFor="lessonLearned" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                <label htmlFor="lessonLearned" className="block text-sm font-medium text-gray-700 mb-2">
                   <span className="text-[#44BBA4] font-semibold">What did you learn?</span>
                 </label>
                 <textarea
@@ -241,10 +241,10 @@ export default function CreatePostModal({
                   required
                   maxLength={500}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 resize-none font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF9E3D] focus:border-transparent transition-all duration-200 hover:border-gray-400 resize-none text-[var(--font-secondary)] font-medium placeholder:text-[var(--font-placeholder)]"
                   placeholder="What insights, lessons, or advice would you share with others?"
                 />
-                <div className="text-right text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <div className="text-right text-xs text-gray-500 mt-1">
                   {formData.lessonLearned.length} / 500
                 </div>
               </div>
@@ -253,24 +253,24 @@ export default function CreatePostModal({
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-[#EF233C] dark:text-red-400 px-4 py-3 rounded-xl text-sm">
+            <div className="bg-red-50 border border-red-200 text-[#EF233C] px-4 py-3 rounded-xl text-sm">
               {error}
             </div>
           )}
 
           {/* Submit Button */}
-          <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100 dark:border-gray-600">
+          <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] rounded-xl hover:bg-gray-50 dark:hover:bg-[#3a3a3a] hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 cursor-pointer transform hover:scale-105"
+              className="px-6 py-3 text-gray-700 border border-gray-300 rounded-xl hover:bg-gray-50 transition-all duration-200"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="px-6 py-3 bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black rounded-xl font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg transform hover:scale-105 disabled:transform-none flex items-center cursor-pointer"
+              className="px-6 py-3 bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black rounded-xl font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg transform hover:scale-105 disabled:transform-none flex items-center"
             >
               {isLoading ? (
                 <>

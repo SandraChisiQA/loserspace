@@ -42,9 +42,9 @@ function VoteButton({ direction, onClick, isActive }: {
     ? "w-5 h-5 transform rotate-180" 
     : "w-5 h-5";
     
-  const buttonClass = `p-1.5 rounded-md transition-all duration-200 hover:scale-110 cursor-pointer ${
-    isActive
-      ? direction === 'up'
+  const buttonClass = `p-1.5 rounded-md transition-all duration-200 hover:scale-110 ${
+    isActive 
+      ? direction === 'up' 
         ? 'text-[#FF9E3D] bg-orange-50'
         : 'text-blue-500 bg-blue-50'
       : 'text-gray-400 hover:text-[#FF9E3D] hover:bg-gray-50'
@@ -67,9 +67,9 @@ function ActionButton({ icon, text, onClick, count }: {
   count?: number
 }) {
   return (
-    <button
+    <button 
       onClick={onClick}
-      className="flex items-center space-x-1 px-2 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-100 hover:text-gray-800 transition-all duration-200 cursor-pointer"
+      className="flex items-center space-x-1 px-2 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-100 hover:text-gray-800 transition-all duration-200"
     >
       {icon}
       <span>{count !== undefined ? `${count} ${text}` : text}</span>
@@ -86,10 +86,10 @@ function CategoryButton({ category, isActive, onClick }: {
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left px-3 py-3 rounded-lg text-sm transition-all duration-200 group cursor-pointer ${
+      className={`w-full text-left px-3 py-3 rounded-lg text-sm transition-all duration-200 group ${
         isActive
           ? 'bg-gradient-to-r from-[#FF9E3D]/10 to-[#FF9E3D]/5 border-r-3 border-[#FF9E3D] font-medium shadow-sm'
-          : 'hover:bg-gray-100 text-gray-700'
+          : 'hover:bg-gray-50 text-gray-700'
       }`}
     >
       <div className={`font-medium ${isActive ? 'text-[#FF9E3D]' : 'text-gray-900 group-hover:text-[#FF9E3D]'} transition-colors duration-200`}>
@@ -429,7 +429,7 @@ function HomePageContent() {
             <div className="hidden sm:flex items-center space-x-3">
               <button
                 onClick={toggleTheme}
-                className={`p-2 rounded-full transition-all duration-200 cursor-pointer ${
+                className={`p-2 rounded-full transition-all duration-200 ${
                   theme === 'dark'
                     ? 'text-yellow-400 bg-yellow-400/10 hover:bg-yellow-400/20 hover:text-yellow-300 border border-yellow-400/20'
                     : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
@@ -450,7 +450,7 @@ function HomePageContent() {
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={handleCreatePost}
-                    className="bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer"
+                    className="bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
                   >
                     Share Failure
                   </button>
@@ -458,7 +458,7 @@ function HomePageContent() {
                     <span className="text-sm text-gray-700 font-medium">u/{user.username}</span>
                     <button
                       onClick={handleLogout}
-                      className="text-sm text-gray-500 hover:text-gray-700 px-2 py-1 rounded hover:bg-gray-100 transition-all duration-200 cursor-pointer"
+                      className="text-sm text-gray-500 hover:text-gray-700 px-2 py-1 rounded hover:bg-gray-100 transition-all duration-200"
                     >
                       logout
                     </button>
@@ -468,13 +468,13 @@ function HomePageContent() {
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => { setAuthMode('signin'); setShowAuthModal(true); }}
-                    className="text-sm text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200 cursor-pointer"
+                    className="text-sm text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200"
                   >
                     Log In
                   </button>
                   <button
                     onClick={() => { setAuthMode('signup'); setShowAuthModal(true); }}
-                    className="bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer"
+                    className="bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
                   >
                     Sign Up
                   </button>
@@ -538,7 +538,7 @@ function HomePageContent() {
                   <div className="text-sm text-gray-700 font-medium">u/{user.username}</div>
                   <button
                     onClick={toggleTheme}
-                    className="flex items-center space-x-2 w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    className="flex items-center space-x-2 w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100"
                   >
                     {theme === 'light' ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -556,7 +556,7 @@ function HomePageContent() {
                       handleLogout();
                       setShowMobileMenu(false);
                     }}
-                    className="w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    className="w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100"
                   >
                     Logout
                   </button>
@@ -569,7 +569,7 @@ function HomePageContent() {
                       setShowAuthModal(true);
                       setShowMobileMenu(false);
                     }}
-                    className="w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    className="w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100"
                   >
                     Log In
                   </button>
@@ -579,7 +579,7 @@ function HomePageContent() {
                       setShowAuthModal(true);
                       setShowMobileMenu(false);
                     }}
-                    className="w-full bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black text-center py-2 rounded-md text-sm font-medium cursor-pointer"
+                    className="w-full bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black text-center py-2 rounded-md text-sm font-medium"
                   >
                     Sign Up
                   </button>
@@ -634,14 +634,14 @@ function HomePageContent() {
                 {user ? (
                   <button
                     onClick={handleCreatePost}
-                    className="inline-block bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer"
+                    className="inline-block bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
                   >
                     Share Your Failure
                   </button>
                 ) : (
                   <button
                     onClick={() => { setAuthMode('signup'); setShowAuthModal(true); }}
-                    className="inline-block bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer"
+                    className="inline-block bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-6 py-3 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
                   >
                     Join Community
                   </button>
@@ -683,7 +683,7 @@ function HomePageContent() {
 
                         <Link href={`/posts/${post.id}?category=${currentCategory}`} className="block cursor-pointer">
                           {/* Post Title */}
-                          <h2 className="text-lg font-semibold text-gray-900 dark:text-[white mb-4] hover:text-[#FF9E3D] transition-all duration-200 line-clamp-2 transform hover:scale-105">
+                          <h2 className="text-lg font-semibold text-gray-900 mb-4 hover:text-[#FF9E3D] transition-colors duration-200 line-clamp-2">
                             {post.title}
                           </h2>
 
@@ -729,7 +729,7 @@ function HomePageContent() {
                           {user && user.username === post.author.username && (
                             <button
                               onClick={() => handleDeletePost(post.id)}
-                              className="flex items-center space-x-1 px-2 py-1.5 rounded-md text-xs text-[#EF233C] hover:bg-red-50 hover:text-[#D91E36] transition-all duration-200 cursor-pointer"
+                              className="flex items-center space-x-1 px-2 py-1.5 rounded-md text-xs text-[#EF233C] hover:bg-red-50 hover:text-[#D91E36] transition-all duration-200"
                             >
                               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clipRule="evenodd" />
@@ -767,7 +767,7 @@ function HomePageContent() {
             {user && (
               <button
                 onClick={handleCreatePost}
-                className="w-full bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black text-center py-3 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer"
+                className="w-full bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black text-center py-3 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
               >
                 Create Post
               </button>

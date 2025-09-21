@@ -39,7 +39,7 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  // Option 1: Global prefix - all routes available with /api prefix
+  // Option 1: Add /api prefix to all routes
   // Routes will be: /api/*, /api/auth/*, /api/posts/*
   app.setGlobalPrefix('api');
 
