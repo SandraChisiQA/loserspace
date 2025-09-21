@@ -20,7 +20,9 @@
       "Bash(vercel:*)",
       "Read(//c/Users/Owner/Desktop/project/**)",
       "Bash(echo:*)",
-      "Bash(npx prisma:*)"
+      "Bash(npx prisma:*)",
+      "Bash(cp:*)",
+      "Bash(npm run vercel-build:*)"
     ],
     "deny": [],
     "ask": []
