@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #fafafa;
   --foreground: #171717;
   --primary: #FFAC5E;
   --primary-hover: #FF8C1A;
@@ -49,12 +49,24 @@ body {
   --font-placeholder: #5a5a5a;
 }
 
+.bg-white {
+  background-color: #f9f9f9;
+}
+
 .dark .bg-white {
   background-color: #2a2a2a;
 }
 
 .dark .text-gray-900 {
   color: #ffffff;
+}
+
+.dark .group:hover .group-hover\:text-\[\#FF9E3D\] {
+  color: #FF9E3D !important;
+}
+
+.dark .group:hover .group-hover\:text-gray-600 {
+  color: #9ca3af !important;
 }
 
 .dark .text-gray-800 {

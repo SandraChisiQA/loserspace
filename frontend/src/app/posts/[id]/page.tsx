@@ -39,7 +39,7 @@ interface Post {
 // Simplified VoteButton for demonstration
 function VoteButton({ direction, onClick, isActive }: { direction: 'up' | 'down', onClick: () => void, isActive?: boolean }) {
   const iconClass = direction === 'up' ? "w-5 h-5 sm:w-6 sm:h-6 transform rotate-180" : "w-5 h-5 sm:w-6 sm:h-6";
-  const buttonClass = `p-3 sm:p-2 rounded-md transition-colors duration-200 touch-manipulation ${isActive ? (direction === 'up' ? 'text-[#FF9E3D] bg-orange-100' : 'text-blue-600 bg-blue-100') : 'text-gray-400 hover:bg-gray-100 active:bg-gray-200'}`;
+  const buttonClass = `p-3 sm:p-2 rounded-md transition-colors duration-200 touch-manipulation cursor-pointer ${isActive ? (direction === 'up' ? 'text-[#FF9E3D] bg-orange-100' : 'text-blue-600 bg-blue-100') : 'text-gray-400 hover:bg-gray-100 active:bg-gray-200'}`;
   return (
     <button className={buttonClass} onClick={onClick}>
       <svg className={iconClass} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
@@ -163,7 +163,7 @@ export default function PostPage() {
               {/* Left: Hamburger Menu */}
               <button
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+                className="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -180,7 +180,7 @@ export default function PostPage() {
               </Link>
 
               {/* Right: Back Button */}
-              <Link href={`/?category=${category}`} className="p-2 rounded-md text-gray-700 hover:bg-gray-100">
+              <Link href={`/?category=${category}`} className="p-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-[#FF9E3D] transition-all duration-200 cursor-pointer">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
@@ -188,7 +188,7 @@ export default function PostPage() {
             </div>
 
             {/* Desktop Layout */}
-            <Link href={`/?category=${category}`} className="hidden sm:block text-sm sm:text-lg font-semibold text-gray-700 hover:text-[#FF9E3D] transition-colors">
+            <Link href={`/?category=${category}`} className="hidden sm:block text-sm sm:text-lg font-semibold text-gray-700 hover:text-[#FF9E3D] transition-all duration-200 cursor-pointer hover:scale-105 transform">
               &larr; Back to l/{category.toLowerCase()}
             </Link>
           </div>
@@ -209,7 +209,7 @@ export default function PostPage() {
                 />
                 <button
                   onClick={() => setShowMobileMenu(false)}
-                  className="p-2 rounded-md text-gray-700 hover:bg-gray-100"
+                  className="p-2 rounded-md text-gray-700 hover:bg-gray-100 cursor-pointer"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -226,7 +226,7 @@ export default function PostPage() {
                       handleCategoryChange(cat.key);
                       setShowMobileMenu(false);
                     }}
-                    className={`w-full text-left px-3 py-3 rounded-lg text-sm transition-all duration-200 ${
+                    className={`w-full text-left px-3 py-3 rounded-lg text-sm transition-all duration-200 cursor-pointer ${
                       category === cat.key
                         ? 'bg-gradient-to-r from-[#FF9E3D]/10 to-[#FF9E3D]/5 border-r-3 border-[#FF9E3D] font-medium'
                         : 'hover:bg-gray-50 text-gray-700'
@@ -290,7 +290,7 @@ export default function PostPage() {
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800">{post.comments.length} Comments</h2>
               <button
                 onClick={() => setShowCommentsModal(true)}
-                className="bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-4 py-3 sm:py-2 rounded-md text-sm font-medium transition-colors w-full sm:w-auto"
+                className="bg-[#FF9E3D] hover:bg-[#FF8C1A] text-black px-4 py-3 sm:py-2 rounded-md text-sm font-medium transition-colors w-full sm:w-auto cursor-pointer"
               >
                 Write a comment
               </button>

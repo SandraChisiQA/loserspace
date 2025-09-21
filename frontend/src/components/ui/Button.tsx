@@ -21,7 +21,7 @@ export function Button({
   href,
   type = 'button'
 }: ButtonProps) {
-  const baseClasses = "font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseClasses = "font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
   
   const variants = {
     primary: "bg-[#FF9E3D] text-black hover:bg-[#FF8C1A] focus:ring-[#FF9E3D] active:bg-[#E6862F] shadow-sm hover:shadow-md",
@@ -40,7 +40,7 @@ export function Button({
   
   if (href) {
     return (
-      <a href={href} className={classes} onClick={onClick}>
+      <a href={href} className={`${classes} cursor-pointer`} onClick={onClick}>
         {children}
       </a>
     );
@@ -76,7 +76,7 @@ export function IconButton({
   onClick,
   className = ''
 }: IconButtonProps) {
-  const baseClasses = "rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseClasses = "rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
   
   const variants = {
     ghost: "text-gray-500 hover:text-[#FF9E3D] hover:bg-gray-100 focus:ring-gray-500",
