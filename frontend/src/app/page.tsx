@@ -383,8 +383,8 @@ function HomePageContent() {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-14">
-            {/* Mobile Layout */}
-            <div className="flex items-center justify-between w-full sm:hidden">
+            {/* Mobile and Tablet Layout */}
+            <div className="flex items-center justify-between w-full lg:hidden">
               {/* Left: Hamburger Menu */}
               <button
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -416,7 +416,7 @@ function HomePageContent() {
             </div>
 
             {/* Desktop Layout */}
-            <div className="hidden sm:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center space-x-4">
               <Link href="/" className="flex items-center space-x-2 group">
                 <img
                   src="/2.png"
@@ -426,7 +426,7 @@ function HomePageContent() {
               </Link>
             </div>
 
-            <div className="hidden sm:flex items-center space-x-3">
+            <div className="hidden lg:flex items-center space-x-3">
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full transition-all duration-200 cursor-pointer ${
@@ -485,9 +485,9 @@ function HomePageContent() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile and Tablet Menu Overlay */}
       {showMobileMenu && (
-        <div className="fixed inset-0 z-50 sm:hidden">
+        <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setShowMobileMenu(false)}></div>
           <div className="fixed top-0 left-0 w-80 h-full bg-white shadow-lg">
             <div className="p-4">
@@ -591,8 +591,8 @@ function HomePageContent() {
       )}
 
       <div className="max-w-7xl mx-auto flex">
-        {/* Sidebar - Hidden on mobile */}
-        <div className="hidden sm:block w-80 bg-white border-r border-gray-200 min-h-screen shadow-sm">
+        {/* Sidebar - Hidden on mobile and tablet */}
+        <div className="hidden lg:block w-80 bg-white border-r border-gray-200 min-h-screen shadow-sm">
           <div className="p-4">
             <div className="space-y-2">
               {categories.map((category) => (
@@ -609,8 +609,8 @@ function HomePageContent() {
 
         {/* Main Content */}
         <div className="flex-1 max-w-4xl">
-          {/* Category Header - Hidden on mobile */}
-          <div className="hidden sm:block bg-white border-b border-gray-200 p-6 shadow-sm">
+          {/* Category Header - Hidden on mobile and tablet */}
+          <div className="hidden lg:block bg-white border-b border-gray-200 p-6 shadow-sm">
             <h1 className="text-2xl font-bold text-gray-900">l/{currentCategoryInfo.name.toLowerCase()}</h1>
             <p className="text-gray-600 text-sm mt-1">{currentCategoryInfo.description}</p>
             <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
@@ -749,7 +749,7 @@ function HomePageContent() {
         </div>
 
         {/* Right Sidebar - Hidden on mobile */}
-        <div className="hidden lg:block w-80 p-6">
+        <div className="hidden sm:block w-80 p-6">
           <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
             <h3 className="font-semibold text-gray-900 mb-3">About l/{currentCategoryInfo.name.toLowerCase()}</h3>
             <p className="text-sm text-gray-600 mb-6 leading-relaxed">{currentCategoryInfo.description}</p>
