@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://backend-o08gnzv7i-jun-sons-projects.vercel.app/api/$1"
+      "destination": "https://backend-o08gnzv7i-jun-sons-projects.vercel.app/$1"
     }
   ]
 }
