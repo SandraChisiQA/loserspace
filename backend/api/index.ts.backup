@@ -5,11 +5,11 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import { HttpExceptionFilter } from '../src/common/filters/http-exception.filter';
 import express from 'express';
 
-let cachedApp: any;
+const server = express();
 
-async function createNestServer() {
-  const expressInstance = express();
+let app: any;
 
+async function createNestServer(expressInstance: express.Express) {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
@@ -21,7 +21,6 @@ async function createNestServer() {
   // Enable CORS for frontend
   const allowedOrigins = [
     'https://losers.space',
-    'https://api.losers.space',
     // Allow Vercel preview URLs
     /\.vercel\.app$/,
     // Allow localhost for development
@@ -54,30 +53,14 @@ async function createNestServer() {
 
   app.setGlobalPrefix('api');
 
-  // Add a manual root route handler
-  const expressApp = app.getHttpAdapter().getInstance();
-  expressApp.get('/', (req: any, res: any) => {
-    res.json({
-      message: 'Losers API is running',
-      status: 'ok',
-      timestamp: new Date().toISOString(),
-      endpoints: {
-        api: '/api',
-        auth: '/api/auth',
-        posts: '/api/posts',
-        userCount: '/api/auth/user-count'
-      }
-    });
-  });
-
   await app.init();
   return app;
 }
 
 export default async (req: any, res: any) => {
-  if (!cachedApp) {
-    cachedApp = await createNestServer();
+  if (!app) {
+    app = await createNestServer(server);
   }
 
-  return cachedApp.getHttpAdapter().getInstance()(req, res);
+  return server(req, res);
 };

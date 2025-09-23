@@ -161,7 +161,7 @@ export default function CreatePostModal({
             >
               {categories.map((category) => (
                 <option key={category.key} value={category.key}>
-                  f/{category.name.toLowerCase()} - {category.description}
+                  l/{category.name.toLowerCase()} - {category.description}
                 </option>
               ))}
             </select>
