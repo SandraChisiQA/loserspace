@@ -5,11 +5,10 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import { HttpExceptionFilter } from '../src/common/filters/http-exception.filter';
 import express from 'express';
 
-let cachedApp: any;
+const server = express();
+let app: any;
 
-async function createNestServer() {
-  const expressInstance = express();
-
+async function createNestServer(expressInstance: express.Express) {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
@@ -52,32 +51,17 @@ async function createNestServer() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  app.setGlobalPrefix('api');
-
-  // Add a manual root route handler
-  const expressApp = app.getHttpAdapter().getInstance();
-  expressApp.get('/', (req: any, res: any) => {
-    res.json({
-      message: 'Losers API is running',
-      status: 'ok',
-      timestamp: new Date().toISOString(),
-      endpoints: {
-        api: '/api',
-        auth: '/api/auth',
-        posts: '/api/posts',
-        userCount: '/api/auth/user-count'
-      }
-    });
-  });
+  // Don't use global prefix for serverless
+  // app.setGlobalPrefix('api');
 
   await app.init();
   return app;
 }
 
 export default async (req: any, res: any) => {
-  if (!cachedApp) {
-    cachedApp = await createNestServer();
+  if (!app) {
+    app = await createNestServer(server);
   }
 
-  return cachedApp.getHttpAdapter().getInstance()(req, res);
+  return server(req, res);
 };
