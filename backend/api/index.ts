@@ -1,42 +1,66 @@
-export default function handler(req: any, res: any) {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from '../src/app.module';
+import { ValidationPipe } from '@nestjs/common';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import { HttpExceptionFilter } from '../src/common/filters/http-exception.filter';
+import express from 'express';
 
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+let cachedApp: any;
+
+async function createNestServer() {
+  if (cachedApp) {
+    return cachedApp;
   }
 
-  const { url } = req;
+  const expressInstance = express();
 
-  if (url === '/') {
-    res.status(200).json({
-      message: 'Losers API is running - BASIC TEST',
-      status: 'ok',
-      timestamp: new Date().toISOString(),
-      url: url,
-      method: req.method
-    });
-    return;
-  }
+  const app = await NestFactory.create(
+    AppModule,
+    new ExpressAdapter(expressInstance),
+    {
+      logger: ['error', 'warn'],
+    }
+  );
 
-  if (url === '/api/posts' || url.startsWith('/api/posts')) {
-    res.status(200).json({
-      posts: [
-        { id: 1, title: 'Test Post', content: 'This is a test', category: 'GENERAL' }
-      ],
-      message: 'Basic test data',
-      url: url
-    });
-    return;
-  }
+  // Enable CORS for frontend
+  const allowedOrigins = [
+    'https://losers.space',
+    'https://api.losers.space',
+    /\.vercel\.app$/,
+    'http://localhost:3000',
+    'http://localhost:3001',
+  ];
 
-  // Default 404
-  res.status(404).json({
-    error: 'Not Found',
-    url: url,
-    message: 'Basic handler working but route not found'
+  app.enableCors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const ok = allowedOrigins.some(o =>
+        o instanceof RegExp ? o.test(origin) : o === origin
+      );
+      return ok ? callback(null, true) : callback(new Error('CORS blocked'));
+    },
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+
+  app.useGlobalFilters(new HttpExceptionFilter());
+
+  await app.init();
+
+  cachedApp = app.getHttpAdapter().getInstance();
+  return cachedApp;
 }
+
+export default async (req: any, res: any) => {
+  const app = await createNestServer();
+  return app(req, res);
+};
