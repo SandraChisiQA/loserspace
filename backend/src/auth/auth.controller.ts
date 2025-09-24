@@ -14,7 +14,7 @@ import { LoginDto } from './dto/login.dto';
 import { AuthResponse } from './interfaces/auth.interface';
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 
-@Controller('api/auth')
+@Controller('auth')
 @UseFilters(HttpExceptionFilter)
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

@@ -12,13 +12,14 @@ async function createNestServer() {
     return cachedApp;
   }
 
+  console.log('Creating NestJS app...');
   const expressInstance = express();
 
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
     {
-      logger: ['error', 'warn'],
+      logger: ['error', 'warn', 'log'], // Added 'log' for more visibility
     }
   );
 
@@ -33,6 +34,7 @@ async function createNestServer() {
 
   app.enableCors({
     origin: (origin, callback) => {
+      console.log('CORS check for origin:', origin);
       if (!origin) return callback(null, true);
       const ok = allowedOrigins.some(o =>
         o instanceof RegExp ? o.test(origin) : o === origin
@@ -55,12 +57,20 @@ async function createNestServer() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.init();
+  console.log('NestJS app initialized successfully');
 
   cachedApp = app.getHttpAdapter().getInstance();
   return cachedApp;
 }
 
 export default async (req: any, res: any) => {
-  const app = await createNestServer();
-  return app(req, res);
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  
+  try {
+    const app = await createNestServer();
+    return app(req, res);
+  } catch (error) {
+    console.error('Error handling request:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };

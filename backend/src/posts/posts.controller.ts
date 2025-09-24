@@ -21,7 +21,7 @@ import { VotePostDto } from './dto/vote-post.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 
-@Controller('api/posts')
+@Controller('posts')
 @UseFilters(HttpExceptionFilter)
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
