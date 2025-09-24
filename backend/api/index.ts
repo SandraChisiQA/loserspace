@@ -56,6 +56,9 @@ async function createNestServer() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
+  // Set global prefix to match expected routes
+  app.setGlobalPrefix('api');
+
   await app.init();
   console.log('NestJS app initialized successfully');
 
