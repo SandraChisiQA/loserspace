@@ -5,31 +5,17 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaClient } from '@prisma/client';
 import * as argon2 from 'argon2';
 import { RegisterDto } from './dto/register.dto';
 import { AuthResponse, JwtPayload } from './interfaces/auth.interface';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
-  private prisma: PrismaClient;
-
-  constructor(private jwtService: JwtService) {
-    this.prisma = new PrismaClient({
-      log: ['query', 'info', 'warn', 'error'],
-      datasources: {
-        db: {
-          url: process.env.DATABASE_URL,
-        },
-      },
-      errorFormat: 'pretty',
-    });
-
-    // Connect immediately to check connection
-    this.prisma.$connect().catch((error) => {
-      console.error('Failed to connect to database:', error);
-    });
-  }
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async register(registerDto: RegisterDto): Promise<AuthResponse> {
     const { username, nickname, password } = registerDto;
@@ -122,9 +108,5 @@ export class AuthService {
       console.error('User count error:', error);
       throw new InternalServerErrorException(`Failed to get user count: ${error.message}`);
     }
-  }
-
-  async onModuleDestroy() {
-    await this.prisma.$disconnect();
   }
 }
